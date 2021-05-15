@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npx webpack --mode=production",
     "dev": "npx webpack serve --mode=development",
+    "lint:fix": "npx eslint --ext ts,tsx src --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,6 +15,10 @@
   "devDependencies": {
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.5",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "eslint": "^7.26.0",
+    "eslint-plugin-react": "^7.23.2",
     "html-webpack-plugin": "^5.3.1",
     "ts-loader": "^9.1.2",
     "typescript": "^4.2.4",
