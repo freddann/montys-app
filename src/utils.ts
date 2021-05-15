@@ -11,9 +11,12 @@ export function range(total: number): number[] {
   }
   return result;
 }
-export function generateSequence(winningIndex: number, boxRange: number[]): Event[] {
+export function generateSequence(winningIndex: number, boxRange: number[]): { sequence: Event[], userFinalPick: number } {
   const userPick = getRandomElement(boxRange);
   const montyPick = getRandomElement(boxRange.filter(v => v !== userPick && v !== winningIndex));
-  const userFinal = getRandomElement(boxRange.filter(v => v !== userPick && v !== montyPick));
-  return [{ name: "userPick", index: userPick }, { name: "montyPick", index: montyPick }, { name: "userFinal", index: userFinal }];
+  const userFinalPick = getRandomElement(boxRange.filter(v => v !== userPick && v !== montyPick));
+  return {
+    sequence: [{ name: "userPick", index: userPick }, { name: "montyPick", index: montyPick }, { name: "userFinal", index: userFinalPick }],
+    userFinalPick,
+  };
 }

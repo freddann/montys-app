@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Event, PickedBy } from "./types";
+import { Box, Event, PickedBy, Stats } from "./types";
 
 function setPickedBy(boxes: Box[], targetIndex: number, value: PickedBy): Box[] {
   return boxes.map((box, index) => targetIndex === index ? { ...box, pickedBy: value } : box);
@@ -39,4 +39,17 @@ export function asAnimatedBoxes(sequence: Event[], boxRange: number[], delay: nu
     }
   }, [sequence]);
   return state;
+}
+
+export function useStats(): Stats {
+  const [wins, setWins] = useState(0);
+  const [losses, setLosses] = useState(0);
+  return { wins, losses, addResult: (win: boolean) => {
+    if (win) setWins(v => v+1);
+    else setLosses(v => v+1);
+  }, reset: () => {
+    setWins(0);
+    setLosses(0);
+  },
+  };
 }

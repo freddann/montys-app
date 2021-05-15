@@ -8,3 +8,9 @@ export interface Box {
     index: number;
     pickedBy: PickedBy;
 }
+export interface Stats {
+    wins: number;
+    losses: number;
+    addResult: (win: boolean) => void;
+    reset: () => void;
+}
