@@ -4,6 +4,7 @@ import Box from "./Box";
 import Scoreboard from "./Scoreboard";
 import { NUM_BOXES } from "./config";
 import { asAnimatedBoxes, DEFAULT_GAME_STATE, useStats, generateGameState } from "./state";
+import NumberControl from "./NumberControl";
 
 function App() {
   const stats = useStats();
@@ -33,7 +34,11 @@ function App() {
       <div style={{ display: "flex" }}>
         {boxes.map(box => <Box key={box.index} index={box.index} isWinning={box.index === winningIndex} pickedBy={box.pickedBy} />)}
       </div>
-      <button onClick={isRunning ? endSimulation : startSimulation}>{isRunning ? "Stop" : "Start"}</button>
+      <div style={{ display: "flex" }}>
+        <NumberControl value={iterations} onChange={setIterations} label="Iterations" />
+        <NumberControl value={delay} onChange={setDelay} label="Animation delay (ms)" />
+        <button onClick={isRunning ? endSimulation : startSimulation}>{isRunning ? "Stop" : "Start"}</button>
+      </div>
     </div>
   );
 }
