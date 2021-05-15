@@ -1,6 +1,6 @@
 import * as React from "react";
-import { WINNING_SYMBOL } from "./config";
-import { Box } from "./types";
+import { WINNING_SYMBOL } from "../config";
+import { Box } from "../types";
 
 const classNames = (list: any[]): string => list.filter(v => !!v).join(" ");
 

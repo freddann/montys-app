@@ -1,12 +1,12 @@
 import * as React from "react";
 import { render } from "react-dom";
-import Box from "./Box";
-import Scoreboard from "./Scoreboard";
+import Box from "./components/Box";
+import Scoreboard from "./components/Scoreboard";
 import { NUM_BOXES } from "./config";
 import { asAnimatedBoxes, DEFAULT_GAME_STATE, useStats, generateGameState } from "./state";
-import NumberControl from "./NumberControl";
+import NumberControl from "./components/NumberControl";
 import "./main.css";
-import Legend from "./Legend";
+import Legend from "./components/Legend";
 
 function App() {
   const stats = useStats();

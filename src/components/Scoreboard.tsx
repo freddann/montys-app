@@ -1,6 +1,6 @@
 
 import * as React from "react";
-import { Stats } from "./types";
+import { Stats } from "../types";
 
 function Scoreboard({ wins, losses }: Stats): React.ReactElement {
   return <div className="scoreboard">

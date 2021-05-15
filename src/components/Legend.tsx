@@ -1,6 +1,6 @@
 
 import * as React from "react";
-import { WINNING_SYMBOL } from "./config";
+import { WINNING_SYMBOL } from "../config";
 
 function Legend(): React.ReactElement {
   return <div className="legend">
