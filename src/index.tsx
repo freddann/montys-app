@@ -20,11 +20,11 @@ function App() {
   const boxes = asAnimatedBoxes(sequence, boxRange, delay);
   React.useEffect(() => {
     if (!isRunning) return;
-    window.setTimeout(() => {
+    const timerId = window.setTimeout(() => {
       stats.addResult(userFinalPick === winningIndex);
       setCounter(v => v+1);
-
     }, delay*(NUM_BOXES+2));
+    return () => window.clearTimeout(timerId);
   }, [isRunning, sequence]);
 
   return (

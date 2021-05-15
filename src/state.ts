@@ -37,9 +37,11 @@ export function asAnimatedBoxes(sequence: Event[], boxRange: number[], delay: nu
   const [state, setState] = useState(getInitialState(boxRange));
   useEffect(() => {
     setState(getInitialState(boxRange));
-    for (let i = 0; i < sequence.length; i++) {
-      window.setTimeout(() => setState(boxes => getNextState(boxes, sequence[i])), delay * (i+1));
-    }
+    const timerIds = sequence.map((event, i) => window.setTimeout(() => {
+      setState(boxes => getNextState(boxes, event));
+    }, delay * (i+1)));
+
+    return () => { timerIds.map(window.clearTimeout); };
   }, [sequence]);
   return state;
 }
