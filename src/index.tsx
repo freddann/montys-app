@@ -3,16 +3,14 @@ import { render } from "react-dom";
 import Box from "./Box";
 import Scoreboard from "./Scoreboard";
 import { NUM_BOXES } from "./config";
-import { asAnimatedBoxes, useStats } from "./state";
-import { generateSequence, range, getRandomElement } from "./utils";
+import { asAnimatedBoxes, DEFAULT_GAME_STATE, useStats, generateGameState } from "./state";
 
 function App() {
   const stats = useStats();
   const [counter, setCounter] = React.useState(0);
   const [delay, setDelay] = React.useState(500);
-  const boxRange = React.useMemo(() => range(NUM_BOXES), [range, NUM_BOXES]);
-  const winningIndex = React.useMemo(() => getRandomElement(boxRange), [counter, boxRange]);
-  const { sequence, userFinalPick } = React.useMemo(() => generateSequence(winningIndex, boxRange), [counter, boxRange]);
+  const isRunning = counter > 0;
+  const { boxRange, sequence, userFinalPick, winningIndex } = React.useMemo(() => isRunning ? generateGameState(NUM_BOXES) : DEFAULT_GAME_STATE, [isRunning, counter, NUM_BOXES]);
   const boxes = asAnimatedBoxes(sequence, boxRange, delay);
   React.useEffect(() => {
     stats.addResult(userFinalPick === winningIndex);

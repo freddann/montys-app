@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { Box, Event, PickedBy, Stats } from "./types";
+import { NUM_BOXES } from "./config";
+import { Box, Event, PickedBy, Stats, GameState } from "./types";
+import { getRandomElement, range } from "./utils";
+
 
 function setPickedBy(boxes: Box[], targetIndex: number, value: PickedBy): Box[] {
   return boxes.map((box, index) => targetIndex === index ? { ...box, pickedBy: value } : box);
@@ -50,6 +53,21 @@ export function useStats(): Stats {
   }, reset: () => {
     setWins(0);
     setLosses(0);
-  },
+  } };
+}
+
+export function generateGameState(numBoxes: number): GameState {
+  const boxRange = range(numBoxes);
+  const winningIndex = getRandomElement(boxRange);
+  const userPick = getRandomElement(boxRange);
+  const montyPick = getRandomElement(boxRange.filter(v => v !== userPick && v !== winningIndex));
+  const userFinalPick = getRandomElement(boxRange.filter(v => v !== userPick && v !== montyPick));
+  return {
+    boxRange,
+    sequence: [{ name: "userPick", index: userPick }, { name: "montyPick", index: montyPick }, { name: "userFinal", index: userFinalPick }],
+    userFinalPick,
+    winningIndex,
   };
 }
+  
+export const DEFAULT_GAME_STATE: GameState = { boxRange: range(NUM_BOXES), sequence: [], userFinalPick: -1, winningIndex: -1 };

@@ -14,3 +14,10 @@ export interface Stats {
     addResult: (win: boolean) => void;
     reset: () => void;
 }
+
+export interface GameState {
+    boxRange: number[];
+    sequence: Event[];
+    userFinalPick: number;
+    winningIndex: number;
+}
