@@ -6,7 +6,6 @@ body {
   }
   
   .boxes {
-    display: flex;
     margin: 1rem -1.5rem 1rem -1.5rem;
   }
   
@@ -19,10 +18,10 @@ body {
       transition: background-color 200ms ease;
       background-color: lightgray;
   }
-  .box.user {
+  .box.user, .bg-user {
       background-color: green;
   }
-  .box.monty {
+  .box.monty, .bg-monty {
       background-color: yellow;
   }
 
@@ -54,12 +53,12 @@ body {
     transform: perspective(1200px) translateZ(0px) translateX(0px) translateY(0px) rotateY(-105deg);
   }
   
-  .controls {
+  .flex {
     display: flex;
+    justify-content: space-between;
   }
   
-  .scoreboard {
-    display: inline-block;
+  .scoreboard, .legend {
     border: 1px solid black;
     padding: 0.5rem;
     text-align: right;

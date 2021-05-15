@@ -6,6 +6,7 @@ import { NUM_BOXES } from "./config";
 import { asAnimatedBoxes, DEFAULT_GAME_STATE, useStats, generateGameState } from "./state";
 import NumberControl from "./NumberControl";
 import "./main.css";
+import Legend from "./Legend";
 
 function App() {
   const stats = useStats();
@@ -31,11 +32,14 @@ function App() {
   return (
     <div className="container">
       <h1>Monty Hall Simulation</h1>
-      <Scoreboard {...stats} />
-      <div className="boxes">
+      <div className="flex">
+        <Scoreboard {...stats} />
+        <Legend />
+      </div>
+      <div className="flex boxes">
         {boxes.map(box => <Box key={box.index} index={box.index} isWinning={box.index === winningIndex} pickedBy={box.pickedBy} />)}
       </div>
-      <div className="controls">
+      <div className="flex">
         <NumberControl value={iterations} onChange={setIterations} label="Iterations" />
         <NumberControl value={delay} onChange={setDelay} label="Animation delay (ms)" />
         <button onClick={isRunning ? endSimulation : startSimulation}>{isRunning ? "Stop" : "Start"}</button>
